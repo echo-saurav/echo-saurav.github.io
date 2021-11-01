@@ -1,0 +1,220 @@
+<!doctype html><html lang=en-us><head>
+<meta charset=utf-8>
+<title>Liva | Personal blog template</title>
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name=description content="android camera">
+<meta name=author content="Saurav Ahmed">
+<meta name=generator content="Hugo 0.88.1">
+<link rel=stylesheet href=/plugins/bootstrap/bootstrap.min.css>
+<link rel=stylesheet href=/plugins/slick/slick.css>
+<link rel=stylesheet href=/plugins/themify-icons/themify-icons.css>
+<link rel=stylesheet href=/plugins/venobox/venobox.css>
+<link rel=stylesheet href=/scss/style.min.css media=screen>
+<link rel="shortcut icon" href=/images/favicon.png type=image/x-icon>
+<link rel=icon href=/images/favicon.png type=image/x-icon>
+<script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','//www.google-analytics.com/analytics.js','ga'),ga('create','Your ID','auto'),ga('send','pageview')</script>
+</head><body>
+<div class=preloader>
+</div>
+<header class=navigation>
+<div class=container>
+<nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom pl-0">
+<a class="navbar-brand mobile-view" href=/><img class=img-fluid src=/images/logo.png alt="Liva | Personal blog template"></a>
+<button class="navbar-toggler border-0" type=button data-toggle=collapse data-target=#navigation>
+<i class=ti-menu></i>
+</button>
+<div class="collapse navbar-collapse text-center" id=navigation>
+<div class=desktop-view>
+<ul class="navbar-nav mr-auto">
+<li class=nav-item>
+<a class=nav-link href=https://www.facebook.com/saurav109/><i class=ti-facebook></i></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=https://twitter.com/saurav_109><i class=ti-twitter-alt></i></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=https://www.instagram.com/echo.saurav/><i class=ti-instagram></i></a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=https://github.com/echo-saurav><i class=ti-github></i></a>
+</li>
+</ul>
+</div>
+<a class="navbar-brand mx-auto desktop-view" href=/><img class=img-fluid src=/images/logo.png alt="Liva | Personal blog template"></a>
+<ul class=navbar-nav>
+<li class=nav-item>
+<a class=nav-link href=/about>About</a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=/blog>Post</a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=/contact>Contact</a>
+</li>
+</ul>
+<div class="search pl-lg-4">
+<button id=searchOpen class=search-btn><i class=ti-search></i></button>
+<div class=search-wrapper>
+<form action=//search class=h-100>
+<input class="search-box px-4" id=search-query name=s type=search placeholder="Type & Hit Enter...">
+</form>
+<button id=searchClose class=search-close><i class="ti-close text-dark"></i></button>
+</div>
+</div>
+</div>
+</nav>
+</div>
+</header>
+<section class=section-sm>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 mx-auto">
+<a href=/categories/android-and-gaming class=text-primary>Android and gaming</a>
+<h2>Using CameraX Exposure Compensation API</h2>
+<div class="mb-3 post-meta">
+<span>By Saurav Ahmed</span>
+<span class="border-bottom border-primary px-2 mx-1"></span>
+<span>29 October 2019</span>
+</div>
+<img src=https://miro.medium.com/max/25330/1*zinEvf1keSZYuZojr31ehQ.png class="img-fluid w-100 mb-4" alt="Using CameraX Exposure Compensation API">
+<div class="content mb-5">
+<p>Camera devices are crucial in driving innovation on mobile devices, and camera exposure is a key element for obtaining a camera image with exceptional quality. In this blog, I’ll discuss the challenges app developers face when working with camera exposure. I’ll then cover how the new CameraX Exposure Compensation API helps to address these challenges, making it much simpler to quickly take images with exceptional quality. Finally, I’ll show you how to integrate the API into your own applications.
+Background
+In photography, exposure is one of the most important factors deciding what is taken into the final image on camera, and most photographers strive to get it right. Auto Exposure (AE) mode serves well for most common scenarios, such as taking a quick image on-the-go. Under certain conditions, however, AE mode makes trade-offs to compensate for overall image quality, and sometimes those trade-offs might not be what you want. One example is backlighting — for example, when shooting from indoors toward a window or other bright light sources, or when shooting outside with the sun on the back of your subject. In these cases, AE mode would create a photo appropriately exposed for the bright background (the highlight area of the photo), but the subject in the dark foreground might be too dim or a silhouette. Figure 1 shows three photos that were taken in an indoor backlit environment under the same conditions with different exposures:</p>
+<p>AE does a good job for overall photo quality, but the higher exposures do give better attention to the collectible Android figurines.
+Traditionally, photographers adjust 3 controls to reach a satisfactory exposure:
+Aperture: the lens’s opening that controls the amount of light entering the camera
+Shutter speed: the duration of the image exposure
+ISO (International Organization for Standardization): the sensitivity of the camera surface for gathering light
+Each control has unique effects on the image: changing the aperture might modify depth of field, shutter speed can blur or freeze action, and higher ISO dramatically might increase image noise. The exact mathematics are pretty involved, but there are various combinations of these settings that obtain the same overall exposure, and the process to get a perfect exposure value can be demanding. To help with compensation, CameraX has implemented the Exposure Compensation API.
+Exposure Compensation API Implementation
+The Exposure Compensation API adjusts the exposure compensation with the exposure compensation index, based on the generated auto-exposure value. The exposure compensation index can be either positive (to brighten the image) or negative (to darken the image). It maps the total exposure span into the compensation index range and the amount of the exposure to step size. The camera device internally changes the exposure according to the exposure index, reducing the effort needed to control other settings to obtain the same effect.
+Taking Figure 1 shown above as an example, the default setting of the camera doesn’t allow enough light on the subjects we’d like to focus on, so we can adjust the exposure compensation with a positive index to obtain a double/quadruple exposure that makes the subjects stand out. By changing the exposure compensation index, the camera internally controls the shutter speed, aperture, and ISO for a proper exposure.
+To access the compensation index, CameraX implements the following:
+CameraControl::setExposureCompensationIndex to set a new exposure compensation index
+ExposureState for exposure compensation capabilities and current settings, including:
+Compensation adjustment supportability
+The supported compensation range
+The supported compensation step size
+Current compensation index value
+The supported compensation step size
+Current compensation index value
+Let’s see how to use the API in a CameraX application to create properly-exposed images.
+Using the Exposure Compensation API
+To use the Exposure Compensation API in your application, you’ll need to do the following:
+Query the exposure compensation capabilities
+Set the new exposure compensation index
+Continue with follow-on actions after confirmation from CameraX
+Query the range of the exposure compensation index
+The range of exposure compensation value depends on the camera device setting and hardware level; applications can query the supported range with the ExposureState interface:</p>
+<p>Set the new exposure compensation index
+If an image appears to be dark, set a positive exposure compensation index to increase the brightness from the camera-determined correct exposure. Similarly, if the image appears to be overly bright, set a negative number. This can be done with setExposureCompensationIndex():</p>
+<p>By default, the value of the exposure compensation index starts from “0”, and the new index value must be within the supported range of the camera device. Otherwise CameraX raises an IllegalArgument error. Note that CameraX reports a supported range of [0,0] if the camera device does not support compensation adjustment.
+As an example, the following code increases the exposure compensation index when the user presses a button in the UI and stops when the exposure index reaches the maximum supported value:</p>
+<p>setExposureCompensationIndex()is an async function, and only one outstanding request is allowed per camera. If the application calls setExposureCompensationIndex() again before the previous call is served, the new request replaces the previous one, and the previous request is canceled with an OperationCanceledException. Generally, the new index value is applied rapidly, and the exposure of the output stream is changed accordingly for any bound use cases. If the application needs to know the exact execution time and result for the specific request, it can register a listener to the function’s returned ListenableFuture.
+Mapping between Compensation Index and Exposure Value (EV)
+Exposure Value (EV) is a quantitative unit that represents the amount of the light difference for the exposure compensation. +1 EV corresponds to a doubling of light, +2 EV is four times the light, and so on. An application can apply the same exposure value to various cameras, even on different devices, to get a similar exposure, but the application should not directly apply the same index value for the same purpose, because an index is a camera-specific value.
+With the compensation API, the exposure value is calculated with the following:
+Exposure Value (EV) = exposure_compensation_index * compensation_step
+The compensation_step mentioned above is the smallest unit whose exposure value (EV) can be changed. Note that compensation_step is dependent on the camera device, as well. An application can query for the compensation_step of the camera from ExposureState and calculate the exposure value as shown in the following example:</p>
+<p>Using an exposure_compensation_index of 6 and a compensation_step of ⅓ as an example, the exposure compensation is calculated as +2 EV, which results in a doubling of the default exposure value.
+Generally, the step_size of the compensation_step is frequently available in fractional units of ⅓ or ½ ; less commonly, some devices might provide 1 or even ¼ increments. The maximum supported exposure value (EV) is usually 2 EV or 3 EV in either direction.
+CameraX Exposure Compensation API Availability
+The Exposure Compensation API was first released experimentally in android.camera:camera-core:1.0.0-beta09.
+The API left the experimental phase in version android.camera:camera-core:1.1.0-alpha06 as part of the formal CameraX API.
+For the latest release version, refer to the official CameraX Release notes.
+Summary
+Sample code for CameraX Exposure Compensation is available on GitHub. Together with the rest of the CameraX API, the Exposure Compensation API helps developers create innovative Android camera applications that shine in the competitive mobile application world. To learn more about CameraX, refer to the official documentation; to keep up with the latest CameraX development, join the CameraX Discussion Group. Feedback is extremely valuable and welcome: feel free to leave a response here, talk to us on the CameraX Discussion group, or create CameraX issues through the official issue tracker.
+Reference:
+setExposureCompensationIndex API, ExposureState API
+Release Notes
+Getting Started with CameraX
+GitHub Samples</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class=section-sm>
+<div class=container>
+<div class=row>
+<div class="col-lg-8 mx-auto text-center">
+<h2>Join Our Newsletter</h2>
+<p class="text-light px-md-5 py-4 border-left border-right border-primary">
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero</p>
+<form action=# class="row justify-content-center">
+<div class="input-group col-md-8">
+<input type=text class=form-control placeholder="Your Email Address">
+<div class=input-group-append>
+<button class="input-group-text btn btn-primary">Subscribe</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</section>
+<footer class=text-capitalize>
+<div class=container>
+<div class="row justify-content-center">
+<div class="col-12 text-center mb-5">
+<a href=/><img src=/images/logo.png alt="Liva | Personal blog template"></a>
+</div>
+<div class="col-lg-3 col-sm-6 mb-5">
+<h6 class=mb-4>Contact Me</h6>
+<ul class=list-unstyled>
+<li class=mb-3><a class=text-dark href=tel:+8801979035226><i class="ti-mobile mr-3 text-primary"></i>+8801979035226</a></li>
+<li class=mb-3><i class="ti-location-pin mr-3 text-primary"></i>Dhaka, Bangladedsh</li>
+<li class=mb-3><a class=text-dark href=mailto:echo.saurav@email.com><i class="ti-email mr-3 text-primary"></i>echo.saurav@email.com</a>
+</li>
+</ul>
+</div>
+<div class="col-lg-3 col-sm-6 mb-5">
+<h6 class=mb-4>Social Contacts</h6>
+<ul class=list-unstyled>
+<li class=mb-3><a class=text-dark href=https://www.facebook.com/saurav109/>facebook</a></li>
+<li class=mb-3><a class=text-dark href=https://twitter.com/saurav_109>twitter</a></li>
+<li class=mb-3><a class=text-dark href=https://www.instagram.com/echo.saurav/>instagram</a></li>
+<li class=mb-3><a class=text-dark href=https://github.com/echo-saurav>github</a></li>
+</ul>
+</div>
+<div class="col-lg-3 col-sm-6 mb-5">
+<h6 class=mb-4>Categories</h6>
+<ul class=list-unstyled>
+<li class=mb-3><a class=text-dark href=/categories/android-and-gaming>Android and gaming</a>
+</li>
+<li class=mb-3><a class=text-dark href=/categories/go-language>Go language</a>
+</li>
+</ul>
+</div>
+<div class="col-lg-3 col-sm-6 mb-5">
+<h6 class=mb-4>Quick Links</h6>
+<ul class=list-unstyled>
+<li class=mb-3><a class=text-dark href=/about>About</a></li>
+<li class=mb-3><a class=text-dark href=/blog>Post</a></li>
+<li class=mb-3><a class=text-dark href=/contact>Contact</a></li>
+</ul>
+</div>
+<div class="col-12 border-top py-4 text-center">
+| copyright © 2021 <a href=https://themefisher.com/hugo-themes/>Themefisher</a> All Rights Reserved |
+</div>
+</div>
+</div>
+</footer>
+<script>var indexURL="/index.json"</script>
+<script src=/plugins/jQuery/jquery.min.js></script>
+<script src=/plugins/bootstrap/bootstrap.min.js></script>
+<script src=/plugins/slick/slick.min.js></script>
+<script src=/plugins/venobox/venobox.min.js></script>
+<script src=/plugins/search/fuse.min.js></script>
+<script src=/plugins/search/mark.js></script>
+<script src=/plugins/search/search.js></script>
+<script src=/js/script.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js></script>
+<div id=js-cookie-box class="cookie-box cookie-box-hide">
+This site uses cookies. By continuing to use this website, you agree to their use. <span id=js-cookie-button class="btn btn-sm btn-primary ml-2">I Accept</span>
+</div>
+<script>(function(c){const a=document.getElementById('js-cookie-box'),b=document.getElementById('js-cookie-button');Cookies.get('cookie-box')||(a.classList.remove('cookie-box-hide'),b.onclick=function(){Cookies.set('cookie-box',!0,{expires:2}),a.classList.add('cookie-box-hide')})})(jQuery)</script>
+<style>.cookie-box{position:fixed;left:0;right:0;bottom:0;text-align:center;z-index:9999;padding:1rem 2rem;background:#474747;transition:all .75s cubic-bezier(.19,1,.22,1);color:#fdfdfd}.cookie-box-hide{display:none}</style>
+</body>
+</html>
