@@ -10,7 +10,7 @@ export default function Home() {
                     <h1>Welcome</h1>
                     <p>You can find me at  this places</p>
                     <p>Contact me if you have queries!</p>
-
+                    <a href="https://echo-saurav.github.io/docs/">my documentations</a>
                 </Col>
                 <Col style={{ backgroundColor: "aqua" }} lg={6} md={12} sm={12}>
                     <h1>Todo</h1>
@@ -18,7 +18,6 @@ export default function Home() {
                         <li>Input basic information</li>
                         <li>Find a good lib for making sciency visual from big to small and timeline for big bang to heat death </li>
                         <li>three.js is my choice </li>
-                        
                     </ul>
                 </Col>
             </Row>
