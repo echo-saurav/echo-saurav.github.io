@@ -16,7 +16,7 @@ export default function Home() {
                     <ul>
                         <li>Input basic information</li>
                         <li>Find a good lib for making sciency visual from big to small and timeline for big bang to heat death </li>
-                        <li>three.js is my choice </li>
+                        <li>three.js looks fine, but i don't wanna learn something new that i won't use much </li>
                     </ul>
                 </Col>
             </Row>
