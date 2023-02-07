@@ -9,6 +9,7 @@ export default function Home() {
                     <p>You can find me at  this places</p>
                     <p>Contact me if you have queries!</p>
                     <a href="https://echo-saurav.github.io/docs/">my documentations</a>
+                    <p>or Contact me</p>
                 </Col>
                 <Col style={{ backgroundColor: "aqua" }} lg={6} md={12} sm={12}>
                     <h1>Todo</h1>
