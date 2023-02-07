@@ -3,8 +3,9 @@
 
 ## build 
 make sure i have latest changes
-
 ```git pull origin master```
+
+
 ```npm run deploy```
 
 ## publish
