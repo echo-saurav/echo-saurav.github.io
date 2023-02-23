@@ -5,9 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+window.location.href = "https://echo-saurav.github.io/docs/";
+
 root.render(
   <React.StrictMode>
-    <App />
+    {/* <App /> */}
+    
   </React.StrictMode>
 );
 
