@@ -22,9 +22,7 @@ export const navigation = [
 // but my plan is to make it functional as apple.com.
 
 function App() {
-  useEffect(() => {
-    window.location.href = "https://echo-saurav.github.io/docs/";
-  }, []);
+
   return (
     <div>
       <Router>
