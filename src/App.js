@@ -8,6 +8,7 @@ import Nav from "./components/nav/Nav";
 import NotFound from "./components/notfound/NotFound";
 import Projects from "./components/projects/Projects";
 import { Container } from "react-bootstrap";
+import { useEffect } from "react";
 
 // odrer matter, expend link should be bellow
 //because this is basically a switch case
@@ -21,6 +22,9 @@ export const navigation = [
 // but my plan is to make it functional as apple.com.
 
 function App() {
+  useEffect(() => {
+    window.location.href = "https://echo-saurav.github.io/docs/";
+  }, []);
   return (
     <div>
       <Router>
