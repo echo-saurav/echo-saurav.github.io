@@ -13,9 +13,10 @@ export default function DummyApp() {
       clearInterval(timer);
       const body = document.querySelector("h1");
       body.classList.add("zoomed");
+      // window.location.href = link;
       setTimeout(() => {
         window.location.href = link;
-      }, 1500);
+      }, 500);
     }
 
     return () => clearInterval(timer);
