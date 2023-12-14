@@ -3,32 +3,41 @@ import "./dummy.css";
 
 export default function DummyApp() {
   const [count, setCount] = useState(5);
-    const link="https://echo-saurav.github.io/obsidianDoc/";
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCount((prevCount) => prevCount - 1);
-    }, 1000);
+  const link="https://echo-saurav.github.io/docs/";
 
-    if (count === 0) {
-      clearInterval(timer);
-      const body = document.querySelector("h1");
-      body.classList.add("zoomed");
-      // window.location.href = link;
-      setTimeout(() => {
-        window.location.href = link;
-      }, 500);
-    }
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     setCount((prevCount) => prevCount - 1);
+  //   }, 1000);
 
-    return () => clearInterval(timer);
-  }, [count]);
-  return (
-    <div className="dummy">
-      <div className="text">
-        <h2>Under development</h2>
-        {count == 0 ? <p>and now!</p> : <p>Redirecting to my <a href={link}>docs</a> in</p>}
+  //   if (count === 0) {
+  //     clearInterval(timer);
+  //     const body = document.querySelector("h1");
+  //     body.classList.add("zoomed");
+  //     // window.location.href = link;
+  //     setTimeout(() => {
+  //       window.location.href = link;
+  //     }, 500);
+  //   }
 
-        <h1>{count}</h1>
-      </div>
-    </div>
-  );
+  //   return () => clearInterval(timer);
+  // }, [count]);
+
+  useEffect(()=>{
+    window.location.href = link;
+  });
+
+  return(
+    <div/>
+  )
+  // return (
+  //   <div className="dummy">
+  //     <div className="text">
+  //       <h2>Under development</h2>
+  //       {count == 0 ? <p>and now!</p> : <p>Redirecting to my <a href={link}>docs</a> in</p>}
+
+  //       <h1>{count}</h1>
+  //     </div>
+  //   </div>
+  // );
 }

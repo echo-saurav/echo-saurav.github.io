@@ -9,13 +9,12 @@ import DummyApp from './DummyApp';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
-window.location.href = "https://echo-saurav.github.io/docs/";
-// root.render(
-//   <React.StrictMode>
-//     {/* <App /> */}
-//     <DummyApp/>
-//   </React.StrictMode>
-// );
+root.render(
+  <React.StrictMode>
+    {/* <App /> */}
+    <DummyApp/>
+  </React.StrictMode>
+);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
